@@ -1,0 +1,107 @@
+﻿<md-dialog flex layout-margin>
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Realizacija <span ng-if="d.id"> br: {{d.id}}</span></h2>
+                <span flex></span>
+                <button ng-click="cancel()" class="btn btn-primary">x</button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div layout-gt-sm="row" layout-margin>
+                    <md-radio-group ng-model="d.type" ng-click="changeType()" layout="row">
+                        <md-radio-button value="0" class="md-primary">GIR (sportska poduka)</md-radio-button>
+                        <md-radio-button value="1" class="md-primary">GIR festival (povremena animacija)</md-radio-button>
+                    </md-radio-group>
+                </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container flex-gt-sm>
+                            <label>Škola</label>
+                            <md-select ng-model="d.school" ng-change="getSchoolClasses(d.school)">
+                                <md-option ng-value="x.name" ng-repeat="x in schools" >{{x.name}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>
+                                Naziv odjeljenja
+                            </label>
+                            <md-select ng-model="d.schoolClassId" ng-change="getLeaders(d.schoolClassId); getStudents(d.schoolClassId)">
+                                <md-option ng-value="x.id" ng-repeat="x in schoolClasses">{{x.name}}</md-option>
+                            </md-select>
+                            <!--<input ng-model="d.schoolClass" type="text">-->
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container flex-gt-sm>
+                            <label>Voditelj</label>
+                            <!--<input ng-model="d.leaderId" type="text">-->
+                            <md-select ng-model="d.leaderId" >
+                                <md-option ng-value="x.id" ng-repeat="x in leaders">{{x.firstName}} {{x.lastName}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Trajanje sata (min)</label>
+                            <input ng-model="d.duration" type="number">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Datum sata</label>
+                            <md-datepicker ng-model="d.date" md-open-on-focus></md-datepicker>
+                        </md-input-container>
+                    </div>
+
+
+                <div layout-gt-sm="row">
+                    <fieldset>
+                        <legend>Prisutni članovi</legend>
+                        <div layout="row" layout-wrap flex>
+                            <div flex-xs flex="50">
+                                <md-checkbox ng-model="selectAll" aria-label="Select All" ng-change="toogleAll()">
+                                    Odaberi sve
+                                </md-checkbox>
+                            </div>
+                            <div flex="100" ng-repeat="x in d.students" style="padding-left:30px" ng-click="checkStudent()">
+                                <md-checkbox ng-model="x.isSelected">
+                                    {{ x.firstName }}, {{x.lastName}}
+                                </md-checkbox>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>
+                            Opis sadržaja rada
+                        </label>
+                        <textarea ng-model="d.description" rows="3"></textarea>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>
+                            Napomena
+                        </label>
+                        <input ng-model="d.note" type="text">
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>
+                            Sat je održala zamjena (*Ovo polje se popunjava u slučaju zamjene voditelja)
+                        </label>
+                        <input ng-model="d.substitute" type="text">
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    <md-button class="md-raised md-primary" ng-click="save()"><span class="fa fa-floppy-o"></span> Spremi</md-button>
+                </div>
+</md-dialog-content>
+        <!--<md-dialog-actions layout="row">
+            <md-button class="md-raised md-primary" ng-click="save(g)">Spremi</md-button>
+        </md-dialog-actions>-->
+
+        <!--<button class="btn btn-warning" ng-click="getJson()">JSON</button>
+        <textarea>{{json}}</textarea>-->
+
+    </form>
+</md-dialog>
+
+
+

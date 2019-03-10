@@ -1,0 +1,26 @@
+﻿<div ng-controller="loginCtrl">
+    <div class="col-md-4 col-md-offset-4 well loginBox">
+        <h3 style="color:black">Prijava u aplikaciju</h3>
+        <hr />
+        <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label style="color:white">Korisničko ime</label>
+                <input ng-model="userName" type="text" style="color:white">
+            </md-input-container>
+        </div>
+        <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label style="color:white">Lozinka</label>
+                <input ng-model="password" type="password" style="color:white">
+            </md-input-container>
+        </div>
+        <div class="form-group text-right">
+            <a href ng-click="login(userName, password)" class="btn btn-default"><span class="fa fa-key" aria-hidden="true"></span> Prijava</a>
+            <a href ng-click="login('admin', 'Hrs123456789')" class="btn btn-default"><span class="fa fa-hand-o-right" aria-hidden="true"></span> Test</a>
+            <!--<a href ng-click="login('spartacus.admin', 'Spartacus1234')" class="btn btn-default"><span class="fa fa-hand-o-right" aria-hidden="true"></span> Test</a>-->
+        </div>
+        <div ng-if="errorLogin" class="alert alert-danger">
+            <strong>Greška !</strong> {{errorMesage}}.
+        </div>
+    </div>
+</div>

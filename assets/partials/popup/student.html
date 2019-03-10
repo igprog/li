@@ -1,0 +1,148 @@
+﻿    <md-dialog flex layout-margin>
+        <form ng-cloak>
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>Pristupnica <span ng-if="d.id"> br: {{d.id}}</span></h2>
+                    <span flex></span>
+                    <button ng-click="cancel()" class="btn btn-primary">x</button>
+                </div>
+            </md-toolbar>
+            <md-dialog-content>
+                <div class="md-dialog-content">
+                    <!--<button class="btn btn-success" ng-click="answer('useful')">Obnovi članarinu</button>-->
+                    <!--<md-input-container ng-if="d.id" class="md-block" flex-gt-sm>
+                        <label>Id</label>
+                        <input ng-model="d.id" type="text" disabled>
+                    </md-input-container>-->
+                    <div layout-gt-sm="row">
+                        <md-input-container flex-gt-sm>
+                            <label>Škola</label>
+                            <md-select ng-model="d.school" ng-change="getSchoolClasses(d.school)">
+                                <md-option ng-value="x.name" ng-repeat="x in schools">{{x.name}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>
+                                Naziv odjeljenja
+                            </label>
+                            <md-select ng-model="d.schoolClassId" ng-change="getTeachers(d.schoolClassId)">
+                                <md-option ng-value="x.id" ng-repeat="x in schoolClasses">{{x.name}}</md-option>
+                            </md-select>
+                        </md-input-container>
+
+
+                        <!--<md-input-container>
+                            <label>Škola</label>
+                            <md-select ng-model="d.school">
+                                <md-option ng-value="x.school" ng-repeat="x in d">{{x.school}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Odjeljenje</label>
+                            <md-select ng-model="d.schoolClass">
+                                <md-option ng-value="x.schoolClass" ng-repeat="x in d">{{x.schoolClass}}</md-option>
+                            </md-select>
+                        </md-input-container>-->
+                        <md-input-container>
+                            <label>Razrednik</label>
+                            <md-select ng-model="d.teacher">
+                                <md-option ng-value="x.name" ng-repeat="x in teachers">{{x.name}}</md-option>
+                            </md-select>
+                            <!--<input ng-model="d.teacher" type="text">-->
+                        </md-input-container>
+                    </div>
+                    <h4>Podaci o članu:</h4>
+                    <hr />
+                    <div layout-gt-sm="row">
+                        <!--<span>Spol </span>-->
+                        <md-radio-group ng-model="d.gender" layout="row" layout-margin>
+                            <span>Spol</span>
+                            <md-radio-button value="0" class="md-primary">M</md-radio-button>
+                            <md-radio-button value="1" class="md-primary">Ž</md-radio-button>
+                        </md-radio-group>
+                    </div>
+                        <div layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Ime</label>
+                                <input ng-model="d.firstName" type="text">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Prezime</label>
+                                <input ng-model="d.lastName" type="text">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Datum rođenja</label>
+                                <!--<input ng-model="d.birthDate | date:'dd.MM.yyyy'" type="date">-->
+                                <md-datepicker ng-model="d.birthDate" md-current-view="year" md-open-on-focus></md-datepicker>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Mjesto rođenja</label>
+                                <input ng-model="d.birthPlace" type="text">
+                            </md-input-container>
+                        </div>
+                        <div layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Adresa stanovanja</label>
+                                <input ng-model="d.address" type="text">
+                            </md-input-container>
+                        </div>
+                        <div layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Visina (cm)</label>
+                                <input ng-model="d.height" type="number">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Težina (kg)</label>
+                                <input ng-model="d.weight" type="number">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Veličina stopala</label>
+                                <input ng-model="d.footSize" type="text">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Veličina majice</label>
+                                <input ng-model="d.tShirtSize" type="text">
+                            </md-input-container>
+                        </div>
+                        <h4>Podaci roditelju/staratelju:</h4>
+                        <hr />
+                        <div layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Ime</label>
+                                <input ng-model="d.parentFirstName" type="text">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Prezime</label>
+                                <input ng-model="d.parentLastName" type="text">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Telefon</label>
+                                <input ng-model="d.phone" type="text">
+                            </md-input-container>
+                            <!--<md-input-container class="md-block" flex-gt-sm>
+                                <label>Mobitel</label>
+                                <input ng-model="d.mobilePhone" type="text">
+                            </md-input-container>-->
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Email</label>
+                                <input name="email" ng-model="d.email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Zanimanje</label>
+                                <input ng-model="d.job" type="text">
+                            </md-input-container>
+                        </div>
+
+
+                        <md-button class="md-raised md-primary" ng-click="save()"><span class="fa fa-floppy-o"></span> Spremi</md-button>
+
+                    </div>
+                <!--<md-dialog-actions layout="row">
+                    <md-button class="md-raised md-primary" ng-click="save()">Spremi</md-button>
+                </md-dialog-actions>-->
+            </md-dialog-content>
+            <!--<md-dialog-actions layout="row">
+                <md-button ng-click="save()">Spremi</md-button>
+            </md-dialog-actions>-->
+        </form>
+    </md-dialog>

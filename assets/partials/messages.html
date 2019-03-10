@@ -1,0 +1,104 @@
+﻿<div ng-controller="messagesCtrl" style="padding-top:50px">
+    <!--<h3>Poruke</h3>
+    <hr />-->
+    <div ng-if="showSaveMessage" class="footer navbar-fixed-top px5">
+        <div class="alert alert-success alert-dismissable text-center">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            <strong>{{message}}</strong>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="container row">
+                        <b>Poruka<span class="radioValue"></span> </b>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <!--<div ng-if="id" layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Id</label>
+                            <input ng-model="id" type="text" disabled>
+                        </md-input-container>
+                    </div>-->
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Naslov</label>
+                            <input ng-model="mail.subject" type="text">
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Poruka</label>
+                            <!--<input ng-model="mail.message" type="text" rows="4">-->
+                            <textarea ng-model="mail.message" rows="4"></textarea>
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Pošalji na E-mail</label>
+                            <input name="email" ng-model="mail.email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                        </md-input-container>
+                    </div>
+
+                        <div layout-gt-sm="row">
+                            <fieldset class="demo-fieldset">
+                                <legend>Pošalji na grupu</legend>
+                                <div layout="row" layout-wrap flex>
+                                    <div flex-xs flex="50">
+                                        <md-checkbox ng-model="selectAll" aria-label="Select All" ng-change="toogleAll()">
+                                            Odaberi sve
+                                        </md-checkbox>
+                                    </div>
+                                    <div flex="100" ng-repeat="x in groups" style="padding-left:30px">
+                                        <md-checkbox ng-model="x.isSelected">
+                                            {{ x.service }}, {{x.option}}
+                                        </md-checkbox>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="row">
+                            <!--<div>-->
+                            <md-dialog-actions layout="row">
+                                <md-button class="md-raised md-primary" ng-click="send()">Pošalji</md-button>
+                            </md-dialog-actions>
+                            <!--</div>-->
+                        </div>
+                        <!--<md-radio-group ng-model="client.service">
+            <md-radio-button ng-repeat="x in services" ng-value="x.text" aria-label="{{ x.text }}">
+                {{ x.text }}
+            </md-radio-button>
+        </md-radio-group>-->
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+       <h3>Poslane poruke</h3> 
+    </div>
+    <md-content class="md-padding">
+        <table class="table table-hover table-responsive">
+            <thead>
+                <tr>
+                    <th>Br.</th>
+                    <th>Naslov</th>
+                    <th>Poruka</th>
+                    <th>Datum poruke</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="x in messages" ng-click="show(x)"style="cursor:pointer">
+                    <td>{{x.id}}</td>
+                    <td>{{x.subject}}</td>
+                    <td>{{x.message}}</td>
+                    <td>{{x.date | date:'dd.MM.yyyy'}}</td>
+                    <td><button class="btn-circle btn-default" ><span class="fa fa-eye"></span></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </md-content>
+
+</div>

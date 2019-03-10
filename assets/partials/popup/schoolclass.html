@@ -1,0 +1,66 @@
+﻿<md-dialog flex layout-xs>
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Školsko odjeljenje <span ng-if="d.id"> br: {{d.id}}</span></h2>
+                <span flex></span>
+                <button ng-click="cancel()" class="btn btn-primary">x</button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div style="padding-bottom:15px">
+                    <md-autocomplete md-no-cache="true" md-selected-item="d.school" md-items="x in schools" md-search-text="searchText" md-item-text="x.name" placeholder="Škola...">
+                        <span md-highlight-text="searchText">{{ x.name }}</span>
+                    </md-autocomplete>
+                </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Naziv odjeljenja</label>
+                            <input ng-model="d.schoolClass" type="text">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Razrednik</label>
+                            <input ng-model="d.teacher" type="text">
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Voditelj</label>
+                            <md-select ng-model="d.leaderId">
+                                <md-option ng-value="x.userId" ng-repeat="x in leaders">{{x.firstName}} {{x.lastName}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Mjesečna satnica</label>
+                            <input ng-model="d.defaultHours" type="number">
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-button class="md-raised md-primary" ng-click="save()"><span class="fa fa-floppy-o"></span> Spremi</md-button>
+                    </div>
+                    <!--<md-input-container class="md-block" flex-gt-sm>
+            <label>
+                Opis sadržaja rada
+            </label>
+            <input ng-model="g.description" type="text">
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>
+                Napomena
+            </label>
+            <input ng-model="g.note" type="text">
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>
+                Sat je održala zamjena (*Ovo polje se popunjava u slučaju zamjene voditelja)
+            </label>
+            <input ng-model="g.substitute" type="text">
+        </md-input-container>-->
+                </div>
+        </md-dialog-content>
+        <!--<md-dialog-actions layout="row">
+            <md-button class="md-raised md-primary" ng-click="save(g)">Spremi</md-button>
+        </md-dialog-actions>-->
+    </form>
+</md-dialog>

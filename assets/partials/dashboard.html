@@ -1,0 +1,91 @@
+﻿<div ng-controller="hrzCtrl">
+    <div class="table-responsive">
+        <md-nav-bar md-selected-nav-item="'realizacija'">
+            <md-nav-item md-nav-click="toggleNewTpl('assets/partials/realizations.html')" name="realizacija">
+                <i class="fa fa-clock-o"></i> REALIZACIJA SATI
+            </md-nav-item>
+            <md-nav-item md-nav-click="toggleNewTpl('assets/partials/schoolclasses.html')" name="odjeljenja">
+                <i class="fa fa-home"></i> ŠKOLSKA ODJELJENJA
+            </md-nav-item>
+            <md-nav-item md-nav-click="toggleNewTpl('assets/partials/students.html')" name="clanovi">
+                <i class="fa fa-users"></i> ČLANOVI
+            </md-nav-item>
+        </md-nav-bar>
+    </div>
+    <div class="container" ng-include="newTpl"></div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="currentClientModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Trenutni članovi</h4>
+            </div>
+            <div class="modal-body">
+                <div style="height: 240px; overflow-y: scroll;">
+                    <p>Trenutno članova <span class="badge">{{currentNumberOfClients}}</span></p>
+                    <table class="table">
+                        <thead class="bg-info">
+                            <tr>
+                                <td>Id</td>
+                                <td>Ime i prezime</td>
+                                <td>Datum</td>
+                                <td>Vrijeme</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="x in currentClients" ng-click="showClient(x)">
+                                <td>{{x.id}}</td>
+                                <td>{{x.firstName}} {{x.lastName}}</td>
+                                <td>{{x.checkInDate}}</td>
+                                <td>{{x.checkInTime}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Clients (expiration) -->
+<div class="modal fade" id="clientsModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Članovi</h4>
+            </div>
+            <div class="modal-body">
+                <div style="height: 240px; overflow-y: scroll;">
+                    <p>Istekle članarine <span class="badge">{{expirationMembership()}}</span></p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th><label>ID</label></th>
+                                <th>Ime i prezime</th>
+                                <td>Istek Članarine</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-class="getDateDiff(x.dateTo) < 5 ? 'text-danger' : ''" ng-repeat="x in clients">
+                                <td>{{x.id}}</td>
+                                <td>{{x.firstName}} {{x.lastName}}</td>
+                                <td>{{x.dateTo}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

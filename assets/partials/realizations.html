@@ -1,0 +1,116 @@
+﻿<div class="row" ng-controller="realizationsCtrl">
+    <div class="col-lg-12">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <md-button class="md-raised md-primary" ng-click="newRealization()"><span class="fa fa-plus"></span> NOVA REALIZACIJA</md-button>
+                    </div>
+                    <!--<div class="col-sm-8 text-right">
+                        <md-button class="md-fab md-warn md-mini" ng-click="createPdf()"><span class="fa fa-file-pdf-o"></span></md-button>
+                    </div>-->
+                    <!--<div class="col-sm-2 text-right">
+                        <md-button class="md-fab md-mini" ng-click="testHtml2Canvas()"><span class="fa fa-file-o"></span></md-button>
+                    </div>-->
+                   
+                    <div ng-if="config.debug" class="col-sm-10 text-right">
+                        <md-button class="md-fab md-mini md-warn" ng-click="testPdf()"><span class="fa fa-file-pdf-o"></span></md-button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer" id="realizationsTable">
+                <div class="row">
+                    <div class="panel-body">
+                        <md-content class="md-padding">
+                            <table class="table table-hover table-responsive">
+                                <thead>
+                                    <tr>
+                                        <!--<th>Status</th>-->
+                                        <th>Br.</th>
+                                        <th>GIR</th>
+                                        <th>Škola</th>
+                                        <th>Odjeljenje</th>
+                                        <th>Trajanje (min)</th>
+                                        <th>Datum</th>
+                                        <th>Opis</th>
+                                        <th>Voditelj</th>
+                                        <th>Napomena</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="x in g">
+                                        <!--<td></td>-->
+                                        <td ng-click="get(x)">{{x.id}}</td>
+                                        <td ng-click="get(x)">{{girType(x.type)}}</td>
+                                        <td ng-click="get(x)">{{x.school}}</td>
+                                        <td ng-click="get(x)">{{x.schoolClass}}</td>
+                                        <td ng-click="get(x)">{{x.duration}}</td>
+                                        <td ng-click="get(x)">{{x.date | date:'dd.MM.yyyy'}}</td>
+                                        <td ng-click="get(x)">{{x.description = x.description.length > 10 ? x.description.substring(0,10) + '...' : x.description}}</td>
+                                        <td ng-click="get(x)">{{x.leaderFirstName}} {{x.leaderLastName}}</td>
+                                        <td ng-click="get(x)">{{x.note = x.note.length > 10 ? x.note.substring(0,10) + '...' : x.note}}</td>
+                                        <td ng-click="get(x)"><i class="fa fa-pencil text-info"></i></td>
+                                        <td ng-click="remove(x)"><i class="fa fa-times text-danger"></i></td>
+                                        <!--<td>
+                                            <div class="progress">
+                                                <div ng-if="x.quantityLeft>0" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{(x.quantityLeft/x.quantity) * 100}}%">
+                                                  {{ x.quantityLeft > 10000 ? 'neograničeno' : x.quantityLeft }}
+                                                </div>
+                                                <div ng-if="x.quantityLeft==0" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                                    {{x.quantityLeft}}
+                                                </div>
+                                            </div>
+                                        </td>-->
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </md-content>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Print-->
+<div id="printr" hidden="hidden" ng-controller="realizationsCtrl" style="background-color:White; padding:50px">
+        <img src="../assets/img/logo.png" width="100" />
+        <div>
+            <div>
+                <h3>Realizacija</h3>
+                <md-content>
+                    <table class="table table-hover table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Br.</th>
+                                <th>GIR</th>
+                                <th>Škola</th>
+                                <th>Odjeljenje</th>
+                                <th>Trajanje (min)</th>
+                                <th>Datum</th>
+                                <!--<th>Opis</th>-->
+                                <th>Voditelj</th>
+                                <!--<th>Napomena</th>-->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="x in g">
+                                <td></td>
+                                <td ng-click="getRealization(x)">{{x.id}}</td>
+                                <td ng-click="getRealization(x)">{{girType(x.type)}}</td>
+                                <td ng-click="getRealization(x)">{{x.school}}</td>
+                                <td ng-click="getRealization(x)">{{x.schoolClass}}</td>
+                                <td ng-click="getRealization(x)">{{x.duration}}</tdng-click="getRealization(x)">
+                                <td ng-click="getRealization(x)">{{x.date | date:'dd.MM.yyyy'}}</td>
+                                <!--<td ng-click="getRealization(x)">{{x.description}}</td>-->
+                                <td ng-click="getRealization(x)">{{x.leaderFirstName}} {{x.leaderLastName}}</td>
+                                <!--<td ng-click="getRealization(x)">{{x.note}}</td>-->
+                            </tr>
+                        </tbody>
+                    </table>
+                </md-content>
+            </div>
+        </div>
+</div>
+<!--End Print-->

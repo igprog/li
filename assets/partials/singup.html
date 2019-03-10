@@ -1,0 +1,76 @@
+﻿<div ng-controller="userCtrl">
+    <div class="col-md-6 col-md-offset-3 well">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="container row">
+                    <label>Registracija novog voditelja<span class="radioValue"></span> </label>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label style="margin-bottom: 30px">Predsjednik</label>
+                        <select ng-model="newUser.userGroupId" class="form-control">
+                            <!--<option value="" disabled="disabled">Vrsta administratora...</option>-->
+                            <option ng-repeat="x in directors" value="{{x.userId}}">{{x.firstName}} {{x.lastName}}</option>
+                        </select>
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Ime</label>
+                        <input ng-model="newUser.firstName" type="text">
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Prezime</label>
+                        <input ng-model="newUser.lastName" type="text">
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Email</label>
+                        <input name="email" ng-model="newUser.email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Korisničko ime</label>
+                        <input ng-model="newUser.userName" type="text">
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Lozinka</label>
+                        <input ng-model="newUser.password" type="password">
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Potvrdi lozinku</label>
+                        <input ng-model="passwordConfirm" type="password">
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label style="margin-bottom: 30px">Vrsta administratora</label>
+                        <select ng-disabled="loginUser.adminType==0?false:true" ng-model="newUser.adminType" class="form-control">
+                            <option ng-selected="newUser.adminType==0?true:false" value="0">Supervizor</option>
+                            <option ng-selected="newUser.adminType==1?true:false" value="1">Predsjednik</option>
+                            <option ng-selected="newUser.adminType==2?true:false" value="2">Voditelj</option>
+                        </select>
+                    </md-input-container>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <md-dialog-actions layout="row">
+                    <md-button class="md-raised md-primary" ng-click="singup()">Registracija</md-button>
+                </md-dialog-actions>
+            </div>
+        </div>
+        <div id="singupMessage" hidden="hidden" class="alert alert-danger">
+            <strong>Error !</strong>
+        </div>
+    </div>
+</div>

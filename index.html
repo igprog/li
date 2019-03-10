@@ -1,0 +1,115 @@
+﻿<html lang="en">
+<head>
+    <title>LINigra | Aplikacija</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!--CDN CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--CSS-->
+    <link rel="stylesheet" href="assets/css/vendor/angular-material.min.css">
+    <!--<link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">-->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!--<link rel="stylesheet" href="assets/css/sb-admin-2.css">-->
+    <!--<link rel="stylesheet" href="assets/css/vendor/fullcalendar.min.css" />
+    <link rel="stylesheet" href="assets/css/vendor/fullcalendar.print.min.css" media="print" />-->
+    <!--JS-->
+    <script src="assets/js/vendor/jquery.min.js"></script>
+    <script src="assets/js/vendor/bootstrap.min.js"></script>
+    <script src="assets/js/vendor/angular.min.js"></script>
+    <script src="assets/js/vendor/angular-animate.min.js"></script>
+    <script src="assets/js/vendor/angular-aria.min.js"></script>
+    <script src="assets/js/vendor/angular-messages.min.js"></script>
+    <script src="assets/js/vendor/angular-material.min.js"></script>
+    <script src="assets/js/vendor/Chart.min.js"></script>
+    <script src="assets/js/vendor/angular-chart.min.js"></script>
+    <script src="assets/js/vendor/ngStorage.min.js"></script>
+    <script src="assets/js/vendor/aui-min.js"></script>
+    <script src="assets/js/vendor/moment.js"></script>
+    <script src="assets/js/vendor/ui-scheduler-event-recorder.js"></script>
+    <script src="assets/js/vendor/moment.js"></script>
+    <script src="assets/js/vendor/ui-scheduler-event-recorder.js"></script>
+    <script src="assets/js/vendor/html2canvas.min.js"></script>
+    <script src="assets/js/vendor/jspdf.min.js"></script>
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico?v=1" />
+    <link href='https://fonts.googleapis.com/css?family=Encode Sans Expanded' rel='stylesheet'>
+    <style>
+        body {
+            font-family: 'Encode Sans Expanded';
+            font-size: 16px;
+        }
+    </style>
+
+</head>
+<body ng-app="app" ng-controller="AppCtrl" >
+    <nav class="navbar navbar-inverse" style="border-radius:0">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button ng-if="isLogin" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!--<a class="navbar-brand" href="#">Hrvatski Ragbijaški Savez</a>-->
+                <a class="navbar-brand" href="index.html" style="padding-top:5px !important"><img style="height:100%" src="assets/img/logo.png"></a>
+            </div>
+            <div ng-if="isLogin" class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right text-right">
+                    <li>
+                        <a href="#" ng-click="toggleTpl('assets/partials/dashboard.html')"><i class="fa fa-tachometer fa-fw"></i> <span>Aplikacija</span></a>
+                    </li>
+                    <li>
+                        <a href="#" ng-click="toggleTpl('assets/partials/scheduler.html')"><i class="fa fa-calendar fa-fw"></i> <span>Kalendar</span></a>
+                    </li>
+                    <li ng-if="config.debug">
+                        <a href="#" ng-click="toggleTpl('assets/partials/messages.html')"><i class="fa fa-envelope-o fa-fw"></i> <span>Poruke</span></a>
+                    </li>
+                     <li ng-if="config.debug&&loginUser.adminType==0" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-gears fa-fw"></i> Postavke <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                <a href="#" ng-click="toggleTpl('assets/partials/settings/mailsettings.html', 7)"><i class="fa fa-envelope-o fa-fw"></i> E-mail postavke</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw"></i> <span>Korisnik: {{loginUser.firstName}} {{loginUser.lastName}}</span> <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user text-right">
+                            <li>
+                                <a href="#" ng-click="toggleTpl('assets/partials/user.html', 8)"><i class="fa fa-user fa-fw"></i> Korisnički profil</a>
+                            </li>
+                            <li ng-if="loginUser.adminType==0 || loginUser.adminType==1" >
+                                <a href="#" ng-click="toggleTpl('assets/partials/users.html', 9)"><i class="fa fa-users fa-fw"></i> Korisnici</a>
+                            </li>
+                            <li ng-if="loginUser.adminType==0">
+                                <a ng-controller="userCtrl" href="#" ng-click="newDirector('assets/partials/user.html')"><i class="fa fa-user-md fa-fw"></i> Novi Predsjednik</a>
+                            </li>
+                            <li ng-if="loginUser.adminType==0 || loginUser.adminType==1" >
+                                <a href="#" ng-click="toggleTpl('assets/partials/singup.html', 12)"><i class="fa fa-user-plus fa-fw"></i> Novi Voditelj</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href ng-click="logout()"><i class="fa fa-sign-out fa-fw"></i> <span>Logout</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container" ng-include="currTpl"></div>
+
+    <div class="navbar-fixed-bottom text-right" style="padding:5px 10px 0px 0px">
+        <a href="http://www.igprog.hr" target="_blank" class="text-muted small">&copy {{today | date:'yyyy'}} IG PROG</a>
+    </div>
+
+    <script src="assets/js/app.js"></script>
+
+</body>
+</html>

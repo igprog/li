@@ -1,0 +1,44 @@
+﻿<div ng-controller="messagesCtrl">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">E-mail postavke</h3>
+        </div>
+    </div>
+    <div class="well">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <label class="col-sm-2 text-right">Email:</label>
+                    <div class="col-sm-8">
+                        <input type="email" class="form-control" ng-model="mailSettings.email" />
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 text-right">Lozinka:</label>
+                    <div class="col-sm-8">
+                        <input type="password" class="form-control" ng-model="mailSettings.password" />
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 text-right">Server Port:</label>
+                    <div class="col-sm-8">
+                        <input type="number" class="form-control" ng-model="mailSettings.serverPort" />
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 text-right">Server Host:</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" ng-model="mailSettings.serverHost" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 col-md-offset-2">
+                        <button class="btn btn-success" ng-click="saveMailSettings()"><span class="fa fa-floppy-o"></span> spremi</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

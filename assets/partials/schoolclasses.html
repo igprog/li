@@ -1,0 +1,47 @@
+﻿<div class="row" ng-controller="schoolClassesCtrl">
+    <div class="col-lg-12">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <md-button class="md-raised md-primary" ng-click="openPopup()"><span class="fa fa-plus"></span> NOVO ODJELJENJE</md-button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="panel-body">
+                        <md-content class="md-padding">
+                            <table class="table table-hover table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Br.</th>
+                                        <th>Škola</th>
+                                        <th>Odjeljenje</th>
+                                        <th>Voditelj</th>
+                                        <th>Mjesečna satnica</th>
+                                        <th>Realizirana satnica</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="x in g">
+                                        <td ng-click="get(x)">{{x.id}}</td>
+                                        <td ng-click="get(x)">{{x.school}}</td>
+                                        <td ng-click="get(x)">{{x.schoolClass}}</td>
+                                        <td ng-click="get(x)">{{x.leaderFirstName}} {{x.leaderLastName}}</td>
+                                        <td ng-click="get(x)">{{x.defaultHours}}</td>
+                                        <td ng-click="get(x)">{{x.totalHours > 0 ? (x.totalHours/60 | number:1) : 0}}</td>
+                                        <td ng-click="get(x)"><i class="fa fa-pencil text-info"></i></td>
+                                        <td ng-click="remove(x)"><i class="fa fa-times text-danger"></i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </md-content>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

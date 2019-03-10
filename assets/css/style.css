@@ -1,0 +1,36 @@
+﻿.dashboardBox {
+margin:10px 0px 10px 0px;
+padding: 10px;
+border-radius: 5px;
+height: 220px;
+border-color: red;
+}
+
+.huge {
+    font-size: 36px;
+}
+
+.vertical-nav {
+    background-color:#5cb85c;
+}
+
+a {
+    color: white;
+}
+
+.solidBox{
+    margin:10px;
+    border:1px solid green;
+    border-radius:5px;
+}
+
+.loginBox{
+    margin-top:100px;
+    /*background-image: url('../img/login_bg.jpg');*/
+    background-color:#64b9f7;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    box-shadow: 10px 10px 5px silver;
+}
+
+
